@@ -1,9 +1,10 @@
 # Team-7-Capstone
 ## Local Deployment Instructions
-`cd capstone project`
+`cd capstone-project`
 
  `npm start`
     Starts the development server.
+    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Other Cmds
   `npm run build`
