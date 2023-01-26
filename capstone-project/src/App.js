@@ -1,6 +1,7 @@
 import './App.scss';
 import Button from 'react-bootstrap/Button';
 import LightLogo from './logos/LogoLight.png';
+import DetailsAccordion from './components/accordion';
 
 function App() {
   return (
@@ -10,16 +11,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-
         <Button variant='success'>TEST BTN</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <DetailsAccordion/>
       </header>
     </div>
   );
