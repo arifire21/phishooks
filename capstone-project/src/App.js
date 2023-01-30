@@ -4,6 +4,7 @@ import LightLogo from './logos/LogoLight.png';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {ImSearch} from 'react-icons/im';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             
             <Col xs="auto" style={{marginTop:"16px"}}>
               <Button variant="primary" type="submit">
-              Search
+              <ImSearch/> Search
               </Button>
             </Col>
           </Row>
