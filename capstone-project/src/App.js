@@ -17,15 +17,13 @@ function App() {
           <Row className="align-items-center">
             <Col xs="auto">
               <Form.Group className="mb-3" controlId="formInput">
-              <Form.Label>URL or Hash</Form.Label>
+              <Form.Label>URL</Form.Label>
               <Form.Control type="text" />
               </Form.Group>
             </Col>
             
             <Col xs="auto" style={{marginTop:"16px"}}>
-              <Button variant="primary" type="submit">
-              <ImSearch/> Search
-              </Button>
+              <Button variant="primary" type="submit"><ImSearch/> Search</Button>
             </Col>
           </Row>
         </Form>
