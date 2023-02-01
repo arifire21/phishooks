@@ -7,10 +7,15 @@ import Col from 'react-bootstrap/Col';
 import {ImSearch} from 'react-icons/im';
 import DetailsAccordion from './components/accordion';
 import React, { useState } from 'react';
-import { useForm } from "reast-hook-form";
 
 function App() {
-const [inputUrl, setInputUrl] = useState("")
+  const [inputUrl, setInputUrl] = useState("")
+  const [tempUrl, setTempUrl] = useState("")
+
+  function handleSubmit() {    
+    setInputUrl(tempUrl)
+    setTempUrl("")
+  };
 
   return (
     <div className="App">
@@ -35,18 +40,17 @@ const [inputUrl, setInputUrl] = useState("")
             <Col xs="auto">
               <Form.Group className="mb-3" controlId="formInput">
               <Form.Label>URL</Form.Label>
-              <Form.Control type="text" onChange={e => setInputUrl(e.target.value)}/>
+              <Form.Control type="text" name="url" value={tempUrl} onChange={e => setTempUrl(e.target.value)}/>
               </Form.Group>
             </Col>
             
             <Col xs="auto" style={{marginTop:"16px"}}>
-              <Button variant="primary" type="submit"><ImSearch/> Search</Button>
+              <Button variant="primary" onClick={handleSubmit}><ImSearch/> Search</Button>
             </Col>
           </Row>
         </Form>
 
         <DetailsAccordion header={inputUrl}/>
-
     </div>
     
   );
