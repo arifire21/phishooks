@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {ImSearch} from 'react-icons/im';
+import PastResults from './components/PastResults';
 
 function App() {
   return (
@@ -14,19 +15,21 @@ function App() {
       </header>
 
         <Form>
-          <Row className="align-items-center">
-            <Col xs="auto">
+          <Row className="align-items-center" style={{width:"100%"}}>
+            <Col xs={9}>
               <Form.Group className="mb-3" controlId="formInput">
               <Form.Label>URL</Form.Label>
               <Form.Control type="text" />
               </Form.Group>
             </Col>
             
-            <Col xs="auto" style={{marginTop:"16px"}}>
+            <Col style={{marginTop:"16px", padding:"0"}}>
               <Button variant="primary" type="submit"><ImSearch/> Search</Button>
             </Col>
           </Row>
         </Form>
+
+        <PastResults/>
     </div>
   );
 }
