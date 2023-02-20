@@ -3,10 +3,18 @@ $colors: (
   "accent": #BF2051
 );
 
-.App, .App-header {
+.App {
   // text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.App-header {
+  float: right !important;
+}
+
+#results-switch {
+  user-select: none;
 }

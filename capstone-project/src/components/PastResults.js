@@ -12,17 +12,10 @@ function PastResults(newResult) {
   }
 
   return (
-    <ListGroup as="ol" numbered style={{float:"right"}}>
-      {/* <ListGroup.Item as="li">Cras justo odio</ListGroup.Item> */}
-
-      {results.map( (result, index)=>
-       (
-          <ListGroup.Item as="li" key={index}>
-              <h3>{result.name}</h3>
-              <p>test</p>
-          </ListGroup.Item>
-       )
-       )}
+    <ListGroup as="ol" numbered>
+      <ListGroup.Item as="li">Cras justo odio</ListGroup.Item>
+      <ListGroup.Item as="li">Cras justo odio</ListGroup.Item>
+      <ListGroup.Item as="li">Cras justo odio</ListGroup.Item>
     </ListGroup>
   );
 }

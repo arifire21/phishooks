@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {ImSearch} from 'react-icons/im';
-import PastResults from './components/PastResults';
+// import PastResults from './components/PastResults';
+import ResultsToggle from './components/ResultsToggle';
 import DetailsAccordion from './components/accordion';
 import React, { useState } from 'react';
 
@@ -19,10 +20,12 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <img src={LightLogo} alt="logo" />
+        <ResultsToggle/>
       </header>
+    <div className='App'>
+      <img src={LightLogo} alt="logo" />
 
         <Form>
           <Row className="align-items-center" style={{width:"100%"}}>
@@ -39,11 +42,9 @@ function App() {
           </Row>
         </Form>
 
-        <PastResults/>
-        
         <DetailsAccordion header={inputUrl}/>
-    </div>
-    
+      </div>
+    </>
   );
 }
 
