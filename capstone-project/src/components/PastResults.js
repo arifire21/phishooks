@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function PastResults(props) {
@@ -10,6 +9,7 @@ function PastResults(props) {
         return <ListGroup.Item key={index}  as="li" onClick={() => {
           props.research(search)
           props.removal(index)
+          props.addition(search)
         }
         }>{search}</ListGroup.Item>
       })}

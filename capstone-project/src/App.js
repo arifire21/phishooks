@@ -24,7 +24,7 @@ function App() {
   function removeSearch(index) {    
     const tempArr = []
     for (let i = 0; i < newResArray.length; i++) {
-      if (i != index) {
+      if (i !== index) {
         tempArr.push(newResArray[i])
       }
     }
@@ -33,7 +33,7 @@ function App() {
 
   function addToArray(tempUrl) {
     if ((newResArray.length) < 10) {
-      setNewResArray(prev => ([... prev, tempUrl]));
+      setNewResArray(prev => ([...prev, tempUrl]));
     } else {
       setNewResArray(prev => {
         const old = [...prev, tempUrl]
@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <header className="App-header">
-        <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch}/>
+        <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch} addition={addToArray}/>
       </header>
     <div className='App'>
       <img src={LightLogo} alt="logo" />

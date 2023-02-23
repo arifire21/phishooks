@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import PastResults from '../components/PastResults';
@@ -24,7 +23,7 @@ function ResultsToggle(props) {
                 <Offcanvas.Title>Past Searches</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <PastResults list={props.list} research={props.research} removal={props.removal}/>
+                    <PastResults list={props.list} research={props.research} removal={props.removal} addition={props.addition}/>
                 </Offcanvas.Body>
             </Offcanvas>
         </>
