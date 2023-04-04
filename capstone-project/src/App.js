@@ -14,12 +14,48 @@ function App() {
   const [inputUrl, setInputUrl] = useState("");
   const [tempUrl, setTempUrl] = useState("");
   const [newResArray, setNewResArray] = useState([]);
+  const [isVisible, setVisible] = useState(false);
+  const [isInvalid, setInvalidity] = useState(null);  //set to null so the styling isnt applied at page load
+  const [isValid, setValidity] = useState(null);      //set to null so the styling isnt applied at page load
 
   function handleSubmit(url) {    
-    setInputUrl(url)
-    addToArray(url)
-    setTempUrl("")
+    if(validateOnSubmit(url)){
+      setVisible(true)
+      setInputUrl(url)
+      addToArray(url)
+      setTempUrl("")
+      setInvalidity(null)
+      setValidity(null)
+    } else{
+      setVisible(false)
+      setInvalidity(true)
+      setValidity(false)
+    }
   };
+
+  function checkValidation(newInput){
+    if (newInput === '') {
+      // console.log(newInput)
+      console.log("debug: str empty, form invalid")
+      setInvalidity(true)
+      setValidity(false)
+    } else{
+      // console.log(newInput)
+      console.log("debug: form valid")
+      setInvalidity(false)
+      setValidity(true)
+    }
+  }
+
+  function validateOnSubmit(url){
+    if (url === '') {
+      console.log("debug: CHECK ON SUBMIT form invalid")
+      return false;
+    }else{
+      console.log("debug: CHECK ON SUBMIT form valid")
+      return true;
+    }
+  }
 
   function removeSearch(index) {    
     const tempArr = []
@@ -51,24 +87,35 @@ function App() {
         <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch} addition={addToArray}/>
       </header>
 
-      <img src={LightLogo} alt="logo" style={{marginBottom:"1rem", borderRadius:"10px"}} />
+      <img src={LightLogo} alt="logo" style={{marginBottom:"1.5rem", borderRadius:"10px"}} />
 
-        <Form style={{width:"50%"}}>
+        <Form noValidate style={{width:"50%", marginBottom:"1rem"}}>
           <Row className='form-row'>
             <Col xs={5}>
-              <Form.Group className="mb-3" controlId="formInput">
-              <Form.Label>URL</Form.Label>
-              <Form.Control type="text" name="url" value={tempUrl} onChange={e => setTempUrl(e.target.value)}/>
+              <Form.Group controlId="formInput">
+              {/* <Form.Label>URL</Form.Label> */}
+              <Form.Control
+                required
+                isInvalid={isInvalid}
+                isValid={isValid}
+                placeholder='Enter a URL...'
+                type="text"
+                name="url"
+                value={tempUrl} 
+                onChange={e => {setTempUrl(e.target.value); checkValidation(e.target.value)}}/>
+              <Form.Control.Feedback type="invalid">
+                URL is required.
+              </Form.Control.Feedback>
               </Form.Group>
             </Col>
             
             <Col className='btn-col'>
-              <Button className='search-btn' variant='primary' onClick={() => handleSubmit(tempUrl)}><ImSearch/> Search</Button>
+              <Button variant='primary' onClick={() => handleSubmit(tempUrl)}><ImSearch/> Search</Button>
             </Col>
           </Row>
         </Form>
 
-        <DetailsAccordion header={inputUrl}/>
+        {isVisible && <DetailsAccordion header={inputUrl}/>}
       </div>
     </>
   );
