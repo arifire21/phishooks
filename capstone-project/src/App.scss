@@ -13,8 +13,48 @@ $colors: (
 
 .App-header {
   float: right !important;
+  align-self: flex-end;
 }
 
 #results-switch {
   user-select: none;
+}
+
+.form-row{
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-col { //dont apply to other col
+  margin-top: 1rem;
+  padding: 0px;
+  width: fit-content !important;
+  max-width: fit-content !important;
+}
+
+// .search-btn {
+//   background-color: map-get($map: $colors, $key: accent);
+//   border-color: map-get($map: $colors, $key: accent);
+//   &:hover {
+//     background-color: #8e1d3f;
+//     border-color: #8e1d3f;
+//   }
+//   &:active {
+//     background-color: #77213b;
+//     border-color: #77213b;
+//   }
+// }
+
+.btn-primary{
+  background-color: map-get($map: $colors, $key: accent);
+  border-color: map-get($map: $colors, $key: accent);
+  &:hover {
+    background-color: #a41b44;
+    border-color: #a41b44;
+  }
+  &:not(:disabled):not(:disabled):active{
+    background-color: #92173c !important;
+    border-color: #92173c !important;
+  }
 }

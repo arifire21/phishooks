@@ -46,23 +46,24 @@ function App() {
 
   return (
     <>
+    <div className='App'>
       <header className="App-header">
         <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch} addition={addToArray}/>
       </header>
-    <div className='App'>
-      <img src={LightLogo} alt="logo" />
 
-        <Form>
-          <Row className="align-items-center" style={{width:"100%"}}>
-            <Col xs={9}>
+      <img src={LightLogo} alt="logo" style={{marginBottom:"1rem", borderRadius:"10px"}} />
+
+        <Form style={{width:"50%"}}>
+          <Row className='form-row'>
+            <Col xs={5}>
               <Form.Group className="mb-3" controlId="formInput">
               <Form.Label>URL</Form.Label>
               <Form.Control type="text" name="url" value={tempUrl} onChange={e => setTempUrl(e.target.value)}/>
               </Form.Group>
             </Col>
             
-            <Col style={{marginTop:"16px", padding:"0"}}>
-              <Button variant="primary" onClick={() => handleSubmit(tempUrl)}><ImSearch/> Search</Button>
+            <Col className='btn-col'>
+              <Button className='search-btn' variant='primary' onClick={() => handleSubmit(tempUrl)}><ImSearch/> Search</Button>
             </Col>
           </Row>
         </Form>
