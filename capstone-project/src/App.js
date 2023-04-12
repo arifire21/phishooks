@@ -89,10 +89,13 @@ function App() {
 
       <img src={LightLogo} alt="logo" style={{marginBottom:"1.5rem", borderRadius:"10px"}} />
 
-        <Form noValidate style={{width:"50%", marginBottom:"1rem"}}>
-          <Row className='form-row'>
-            <Col xs={5}>
-              <Form.Group controlId="formInput">
+      <Form noValidate style={{width:"50%", marginBottom:"1rem"}} onSubmit={e => {
+        e.preventDefault();  // Prevent the default form submission behavior
+        handleSubmit(tempUrl);
+      }}>
+        <Row className='form-row'>
+          <Col xs={5}>
+            <Form.Group controlId="formInput">
               {/* <Form.Label>URL</Form.Label> */}
               <Form.Control
                 required
@@ -102,18 +105,19 @@ function App() {
                 type="text"
                 name="url"
                 value={tempUrl} 
-                onChange={e => {setTempUrl(e.target.value); checkValidation(e.target.value)}}/>
+                onChange={e => {setTempUrl(e.target.value); checkValidation(e.target.value)}}
+              />
               <Form.Control.Feedback type="invalid">
                 URL is required.
               </Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-            
-            <Col className='btn-col'>
-              <Button variant='primary' onClick={() => handleSubmit(tempUrl)}><ImSearch/> Search</Button>
-            </Col>
-          </Row>
-        </Form>
+            </Form.Group>
+          </Col>
+                  
+          <Col className='btn-col'>
+            <Button variant='primary' type="submit"><ImSearch/> Search</Button>
+          </Col>
+        </Row>
+      </Form>
 
         {isVisible && <DetailsAccordion header={inputUrl}/>}
       </div>

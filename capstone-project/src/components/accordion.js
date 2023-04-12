@@ -4,28 +4,22 @@ import React from 'react';
 
 function DetailsAccordion({header}) {
 
-  function scanUrl(url) {
-    axios.post('http://localhost:7006/api/scan-url', { url: url })
+  function scanUrl() {
+    axios.post('http://localhost:7006/api/scan-url', { url: header})
       .then((response) => {
-        console.log(response.data);
+        return response.data;
       })
       .catch((error) => {
-        console.error(error);
+        return error;
       });
   }
-
-  React.useEffect(() => {
-    if (header) {
-      scanUrl(header);
-    }
-  }, [header]);
 
   return (
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>{header}</Accordion.Header>
         <Accordion.Body>
-          
+        {JSON.stringify(scanUrl, null, 2)}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
