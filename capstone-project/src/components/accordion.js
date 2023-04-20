@@ -9,26 +9,50 @@ function DetailsAccordion({header}) {
   const [undetectedResult, setUndetectedResult] = useState(null);
   const [errorResult, setErrorResult] = useState(null);
   const [totalVendors, setTotalVendors] = useState(99);
-  // const [results, setResults] = useState([]) 
+
+  // var vendors = [];
+  // var details = [];
+  var results = [];
 
   function scanUrl() {
     let tempTotal = 0;
 
     axios.post('http://localhost:7006/api/scan-url', { url: header})
       .then((response) => {
-        setHarmlessResult(response.data.attributes.stats.harmless);
-        setMaliciousResult(response.data.attributes.stats.malicious);
-        setSuspiciousResult(response.data.attributes.stats.suspicious);
-        setUndetectedResult(response.data.attributes.stats.undetected);
-        console.log(harmlessResult + " " + maliciousResult + " " + suspiciousResult + " " + undetectedResult)
+        if(response.data.attributes.status === "queued"){
+          setErrorResult("Too many requests, please try again later!");
+        }else{
+          console.log(response.data.attributes.stats)
+          setHarmlessResult(response.data.attributes.stats.harmless);
+          setMaliciousResult(response.data.attributes.stats.malicious);
+          setSuspiciousResult(response.data.attributes.stats.suspicious);
+          setUndetectedResult(response.data.attributes.stats.undetected);
+          console.log(harmlessResult + " " + maliciousResult + " " + suspiciousResult + " " + undetectedResult)
 
         for (let vendor in response.data.attributes.results) {
           tempTotal++
-          console.log(vendor)
-          console.log(vendor.category)
-          console.log(vendor.method)
+          // console.log(response.data.attributes.results[vendor])
+          // console.log(response.data.attributes.results[vendor].category)
+          // console.log(response.data.attributes.results[vendor].method)
+
+          // vendors.push(response.data.attributes.results[vendor].engine_name)
+          // details.push({
+            results.push({
+              key: "Vendor",
+              value: response.data.attributes.results[vendor].engine_name
+            },{
+            key:   "Ruling",
+            value: response.data.attributes.results[vendor].category
+            },{
+            key:   "Method",
+            value: response.data.attributes.results[vendor].method
+          })
         }
         setTotalVendors(tempTotal)
+        console.log(tempTotal)
+        console.log(vendors)
+        console.log(details)
+        }
       })
       .catch((error) => {
         setErrorResult(error);
@@ -42,22 +66,33 @@ function DetailsAccordion({header}) {
 
   return (
     <>
-    <p>{header}</p>
+    <p><b>{header}</b></p>
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>Details</Accordion.Header>
         <Accordion.Body>
-          <p>{harmlessResult ? JSON.stringify(harmlessResult, null, 2) : "0"}/{totalVendors} vendors view this URL as harmless.</p>
-          <p>{maliciousResult ? JSON.stringify(maliciousResult, null, 2) : "0"}/{totalVendors} vendors view this URL as malicious.</p>
-          <p>{suspiciousResult ? JSON.stringify(suspiciousResult, null, 2): "0"}/{totalVendors} vendors view this URL as suspicious.</p>
-          <p>{undetectedResult ? JSON.stringify(undetectedResult, null, 2) : "0"}/{totalVendors} vendors did not detect anything.</p>
-          <p>{errorResult}</p>
+          {/* if theres an error, throw it. if not, display the results (hopefully) */}
+          {errorResult ? JSON.stringify(errorResult, null, 2) :(
+            <>
+            <p><b>{harmlessResult ? JSON.stringify(harmlessResult, null, 2) : "0"}</b> vendors view this URL as harmless.</p>
+            <p><b>{maliciousResult ? JSON.stringify(maliciousResult, null, 2) : "0"}</b> vendors view this URL as malicious.</p>
+            <p><b>{suspiciousResult ? JSON.stringify(suspiciousResult, null, 2): "0"}</b> vendors view this URL as suspicious.</p>
+            <p><b>{undetectedResult ? JSON.stringify(undetectedResult, null, 2) : "0"}</b> vendors did not detect anything.</p>
+            <p>Total vendors analyzed: <b>{totalVendors}</b></p>
+            </>
+          )}
+          {/* <p>{errorResult && (JSON.stringify(errorResult, null, 2))}</p> */}
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
         <Accordion.Header>Advanced (Vendor Rulings)</Accordion.Header>
         <Accordion.Body>
-          <p>TBD</p>
+        {results.map(([key, value]) => (
+            <>
+            <p>{key}</p>
+            <small>{value}</small>
+            </>
+        ))}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
