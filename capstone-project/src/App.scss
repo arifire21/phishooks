@@ -35,6 +35,14 @@ $colors: (
   justify-content: center;
 }
 
+.results-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+// .results-item {
+// }
 
 //BOOTSTRAP OVERRIDE
 .btn-primary{

@@ -10,7 +10,13 @@ function DetailsAccordion({header}) {
   const [errorResult, setErrorResult] = useState(null);
   const [totalVendors, setTotalVendors] = useState(99);
 
-  var results = {};
+  const results = {};
+
+  var vendors = [];
+  var rulings = [];
+  var methods = [];
+
+  // const results = [];
 
   function scanUrl() {
     let tempTotal = 0;
@@ -35,6 +41,18 @@ function DetailsAccordion({header}) {
               "Ruling" : attrs.results[vendor].category,
               "Method": attrs.results[vendor].method
             }
+
+            // vendors.push(attrs.results[vendor].engine_name);
+            // rulings.push(attrs.results[vendor].category);
+            // methods.push(attrs.results[vendor].method);
+
+            // results.push(
+            //   <div key={attrs.results[vendor].engine_name} className='results-item'>
+            //     <p>{attrs.results[vendor].engine_name}</p>
+            //     <small>Ruling: {attrs.results[vendor].category}</small>
+            //     <small>Method: {attrs.results[vendor].method}</small>
+            //   </div>
+            // )
           }
 
           setTotalVendors(tempTotal)
@@ -43,8 +61,8 @@ function DetailsAccordion({header}) {
         }
       })
       .catch((error) => {
-        if(errorResult == null){ //if not already set by queued status
-          setErrorResult(error);
+        if(errorResult === null){ //if not already set by queued status
+          setErrorResult(JSON.stringify([error.message, error.name, error.code], null, 2));
         }
       });
   }
@@ -64,7 +82,7 @@ function DetailsAccordion({header}) {
           {/* if theres an error, throw it. if not, display the results */}
           {errorResult ? (
             <>
-            <p>{JSON.stringify([errorResult.message, errorResult.name, errorResult.code], null, 2)}</p>
+            <p>{errorResult}</p>
             </>
           ) : (
             <>
@@ -80,12 +98,21 @@ function DetailsAccordion({header}) {
       <Accordion.Item eventKey="1">
         <Accordion.Header>Advanced (Vendor Rulings)</Accordion.Header>
         <Accordion.Body>
-        {/* {results.map((key, value) => (
-            <>
-            <p>{key}</p>
-            <small>{value}</small>
-            </>
-        ))} */}
+          {/* {
+            Object.entries(results)
+            .map( ([key, value]) => 
+              <>
+              <p key={key}>{key}</p>
+              <small key={key}>{value}</small>
+              </>
+            )
+          } */}
+
+          {/* <div className='results-container'>
+            {vendors.map((vendor) => (
+              <p key={vendor}>{vendor}</p>
+            ))}
+          </div> */}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
