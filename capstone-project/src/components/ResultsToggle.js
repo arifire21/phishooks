@@ -9,9 +9,9 @@ function ResultsToggle(props) {
   
     return(
         <>
-            <Form style={{marginRight:"2rem"}}>
+            <Form className='results-switch'>
                 <Form.Switch 
-                id="results-switch"
+                // id="results-switch"
                 label="See past results"
                 checked={isChecked}
                 onChange={e => setChecked(e.target.value)}

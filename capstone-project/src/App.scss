@@ -16,8 +16,19 @@ $colors: (
   align-self: flex-end;
 }
 
-#results-switch {
+.logo {
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+}
+
+.results-switch {
   user-select: none;
+  margin-right: 2rem;
+}
+
+.url-form {
+  width: 60vw;
+  margin-bottom: 1rem;
 }
 
 .form-row{
@@ -84,4 +95,37 @@ $colors: (
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
   color: #70122e !important;
+}
+
+//MOBILE MEDIA RULE
+@media (min-width: 375px) and (max-width: 450px) {
+  .App{
+    padding: 1rem
+  }
+
+  .results-switch {
+    margin-right: 0;
+  }
+
+  .results-container {
+    width: 100%;
+    column-gap: 0.25rem;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .url-form {
+    width: 100%;
+  }
+
+  .col-mobile {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-row {
+    flex-wrap: wrap;
+  }
 }

@@ -87,17 +87,18 @@ function App() {
         <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch} addition={addToArray}/>
       </header>
 
-      <img src={LightLogo} alt="logo" style={{marginBottom:"1.5rem", borderRadius:"10px"}} />
+      <img src={LightLogo} alt="logo" className='logo'/>
 
       <h1>What is PhisHooks?</h1>
-      <p style={{textAlign:"center"}}>PhisHooks is a phishing detection tool made to show an easy-to-read analysis on any link you may find suspicious. Enter your URL below and view vendor rulings.</p>
+      <p style={{textAlign:"center", marginBottom:"0.25rem"}}>PhisHooks is a phishing detection tool made to show an easy-to-read analysis on any link you may find suspicious. Enter your URL below and view vendor rulings.</p>
+      <p style={{textAlign:"center", color:"darkred"}}><b>Disclaimer:</b> Though a URL may be deemed harmless by us, that may not necessarily mean it is fully harmless. Please proceed with caution if attempting to visit any URLs you scan.</p>
 
-      <Form noValidate style={{width:"50%", marginBottom:"1rem"}} onSubmit={e => {
+      <Form noValidate className='url-form' onSubmit={e => {
         e.preventDefault();  // Prevent the default form submission behavior
         handleSubmit(tempUrl);
       }}>
         <Row className='form-row'>
-          <Col xs={5}>
+          <Col xs={5} className='col-mobile'>
             <Form.Group controlId="formInput">
               {/* <Form.Label>URL</Form.Label> */}
               <Form.Control

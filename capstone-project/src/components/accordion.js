@@ -60,7 +60,7 @@ function DetailsAccordion({ header }) {
 
   return (
     <>
-      <p><b>{header}</b></p>
+      <p style={{textAlign:"center"}}><b>{header}</b></p>
       <Accordion defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Details</Accordion.Header>
