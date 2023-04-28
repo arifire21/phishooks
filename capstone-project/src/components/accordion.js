@@ -15,7 +15,7 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('http://localhost:7005/api/scan-url', { url: header })
+    axios.post('https://phishooks-backend.herokuapp.com/api/scan-url', { url: header })
       .then((response) => {
         let attrs = response.data.attributes;
         if (attrs.status === "queued") {
