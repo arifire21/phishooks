@@ -36,13 +36,29 @@ $colors: (
 }
 
 .results-container {
+  width: 60vw;
   display: flex;
   justify-content: space-between;
   align-content: center;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
 }
 
 // .results-item {
+//   width: max-content;
+//   flex-wrap: wrap;
+//   flex-direction: column;
 // }
+
+.vendor-name {
+  font-size: 14pt;
+  margin-bottom: 0.5rem;
+}
+
+.vendor-detail {
+  // font-size: 11pt;
+  margin-bottom: 0.25rem;
+}
 
 //BOOTSTRAP OVERRIDE
 .btn-primary{
@@ -56,4 +72,16 @@ $colors: (
     background-color: #92173c !important;
     border-color: #92173c !important;
   }
+}
+
+.nav-tabs .nav-link {
+  color: map-get($map: $colors, $key: accent) !important;
+}
+
+.nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {
+  color: gray !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #70122e !important;
 }

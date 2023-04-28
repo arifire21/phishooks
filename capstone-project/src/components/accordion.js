@@ -1,4 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import axios from 'axios';
 import React, { useState } from 'react';
 
@@ -15,7 +17,7 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('https://phishooks-backend.herokuapp.com/api/scan-url', { url: header })
+    axios.post('http://localhost:7006/api/scan-url', { url: header })
       .then((response) => {
         let attrs = response.data.attributes;
         if (attrs.status === "queued") {
@@ -34,7 +36,7 @@ function DetailsAccordion({ header }) {
               category: attrs.results[vendor].category,
               result: attrs.results[vendor].result,
               method: attrs.results[vendor].method,
-              engine_name: attrs.results[vendor].engine_name
+              // engine_name: attrs.results[vendor].engine_name
             };
             vendorDetails.push(vendorInfo);
           }
@@ -82,16 +84,68 @@ function DetailsAccordion({ header }) {
         <Accordion.Item eventKey="1">
           <Accordion.Header>Advanced (Vendor Rulings)</Accordion.Header>
           <Accordion.Body>
-            {vendors.map((vendor, index) => (
-              <div key={index}>
-                <p><b>Name:</b> {vendor.name}</p>
-                <p><b>Category:</b> {vendor.category}</p>
-                <p><b>Result:</b> {vendor.result}</p>
-                <p><b>Method:</b> {vendor.method}</p>
-                <p><b>Engine Name:</b> {vendor.engine_name}</p>
-                {index !== vendors.length - 1 && <hr />}
-              </div>
-            ))}
+          <Tabs
+              defaultActiveKey="harmless"
+              id="uncontrolled-tab-example"
+              className="mb-3"
+              fill
+            >
+              <Tab eventKey="harmless" title="Harmless" disabled={harmlessResult > 0 ? false : false}>
+                  <div className='results-container'>
+                    {vendors.filter(vendor => vendor.category === "harmless").map((vendor, index) => (
+                      <div key={index} className='results-item'>
+                        <p className='vendor-name'><b>{vendor.name}</b></p>
+                        <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
+                        <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
+                        <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
+                        {index !== vendors.length - 1 && <hr />}
+                      </div>
+                    ))}
+                  </div>
+              </Tab>
+              <Tab eventKey="malicious" title="Malicious" disabled={maliciousResult > 0 ? false : true}>
+                  <div className='results-container'>
+                    {vendors.filter(vendor => vendor.category === "malicious").map((vendor, index) => (
+                      <div key={index} className='results-item'>
+                        <p className='vendor-name'><b>{vendor.name}</b></p>
+                        <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
+                        <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
+                        <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
+                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
+                        {index !== vendors.length - 1 && <hr />}
+                      </div>
+                    ))}
+                  </div>
+              </Tab>
+              <Tab eventKey="suspicious" title="Suspicious" disabled={suspiciousResult > 0 ? false : true}>
+                  <div className='results-container'>
+                    {vendors.filter(vendor => vendor.category === "suspicious").map((vendor, index) => (
+                      <div key={index} className='results-item'>
+                        <p className='vendor-name'><b>{vendor.name}</b></p>
+                        <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
+                        <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
+                        <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
+                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
+                        {index !== vendors.length - 1 && <hr />}
+                      </div>
+                    ))}
+                  </div>
+              </Tab>
+              <Tab eventKey="undetected" title="Undetected" disabled={undetectedResult > 0 ? false : true}>
+                  <div className='results-container'>
+                    {vendors.filter(vendor => vendor.category === "undetected").map((vendor, index) => (
+                      <div key={index} className='results-item'>
+                        <p className='vendor-name'><b>{vendor.name}</b></p>
+                        <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
+                        <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
+                        <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
+                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
+                        {index !== vendors.length - 1 && <hr />}
+                      </div>
+                    ))}
+                  </div>
+              </Tab>
+            </Tabs>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

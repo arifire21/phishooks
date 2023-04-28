@@ -89,6 +89,9 @@ function App() {
 
       <img src={LightLogo} alt="logo" style={{marginBottom:"1.5rem", borderRadius:"10px"}} />
 
+      <h1>What is PhisHooks?</h1>
+      <p style={{textAlign:"center"}}>PhisHooks is a phishing detection tool made to show an easy-to-read analysis on any link you may find suspicious. Enter your URL below and view vendor rulings.</p>
+
       <Form noValidate style={{width:"50%", marginBottom:"1rem"}} onSubmit={e => {
         e.preventDefault();  // Prevent the default form submission behavior
         handleSubmit(tempUrl);
