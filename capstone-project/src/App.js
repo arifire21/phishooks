@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {ImSearch} from 'react-icons/im';
-// import PastResults from './components/PastResults';
+import AboutToggle from './components/AboutToggle';
 import ResultsToggle from './components/ResultsToggle';
 import DetailsAccordion from './components/accordion';
 import React, { useState } from 'react';
@@ -80,18 +80,26 @@ function App() {
     console.log(newResArray)
   };
 
+  window.onload = function(){
+    //listener for sticky disclaimer
+    const el = document.querySelector(".disclaimer-container")
+    const observer = new IntersectionObserver( 
+      ([e]) => e.target.classList.toggle("stuck", e.intersectionRatio < 1),
+      { threshold: [1] }
+    );
+    observer.observe(el);
+  }
+
   return (
     <>
     <div className='App'>
       <header className="App-header">
         <ResultsToggle list={newResArray} research={handleSubmit} removal={removeSearch} addition={addToArray}/>
+        <AboutToggle/>
       </header>
 
       <img src={LightLogo} alt="logo" className='logo'/>
-
-      <h1>What is PhisHooks?</h1>
-      <p style={{textAlign:"center", marginBottom:"0.25rem"}}>PhisHooks is a phishing detection tool made to show an easy-to-read analysis on any link you may find suspicious. Enter your URL below and view vendor rulings.</p>
-      <p style={{textAlign:"center", color:"darkred"}}><b>Disclaimer:</b> Though a URL may be deemed harmless by us, that may not necessarily mean it is fully harmless. Please proceed with caution if attempting to visit any URLs you scan.</p>
+      <p>Enter a URL below to check its validity. Must end in a top-level domain (.com, .gov, .co.uk, .de, etc.)</p>
 
       <Form noValidate className='url-form' onSubmit={e => {
         e.preventDefault();  // Prevent the default form submission behavior
@@ -123,6 +131,9 @@ function App() {
         </Row>
       </Form>
 
+        <div className='disclaimer-container'>
+          <p className='disclaimer'><b>Disclaimer:</b> Though a URL may be deemed harmless by us, that may not necessarily mean it is fully harmless. Please proceed with caution if attempting to visit any URLs you scan.</p>
+        </div>
         {isVisible && <DetailsAccordion header={inputUrl}/>}
       </div>
     </>
