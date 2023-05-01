@@ -17,9 +17,9 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('http://localhost:7006/api/scan-url', { url: header })
+    axios.post('http://3.144.199.247:7006/api/scan-url', { url: header })
       .then((response) => {
-        let attrs = response.data.attributes;
+        let attrs = response.data.data.attributes;
         if (attrs.status === "queued") {
           setErrorResult(`Too many requests, please try again later!`);
         } else {
@@ -43,7 +43,7 @@ function DetailsAccordion({ header }) {
 
           setTotalVendors(tempTotal);
           setVendors(vendorDetails);
-          console.log(vendorDetails)
+          // console.log(vendorDetails)
         }
       })
       .catch((error) => {
