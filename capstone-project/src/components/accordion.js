@@ -17,7 +17,7 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('http://3.144.199.247:7006/api/scan-url', { url: header })
+    axios.post('http://3.144.199.247:7008/api/scan-url', { url: header })
       .then((response) => {
         let attrs = response.data.data.attributes;
         if (attrs.status === "queued") {
@@ -36,14 +36,12 @@ function DetailsAccordion({ header }) {
               category: attrs.results[vendor].category,
               result: attrs.results[vendor].result,
               method: attrs.results[vendor].method,
-              // engine_name: attrs.results[vendor].engine_name
             };
             vendorDetails.push(vendorInfo);
           }
 
           setTotalVendors(tempTotal);
           setVendors(vendorDetails);
-          // console.log(vendorDetails)
         }
       })
       .catch((error) => {
@@ -111,7 +109,6 @@ function DetailsAccordion({ header }) {
                         <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
                         <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
                         <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
-                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
                         {index !== vendors.length - 1 && <hr />}
                       </div>
                     ))}
@@ -125,7 +122,6 @@ function DetailsAccordion({ header }) {
                         <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
                         <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
                         <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
-                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
                         {index !== vendors.length - 1 && <hr />}
                       </div>
                     ))}
@@ -139,7 +135,6 @@ function DetailsAccordion({ header }) {
                         <p className='vendor-detail'><b>Category:</b> {vendor.category}</p>
                         <p className='vendor-detail'><b>Result:</b> {vendor.result}</p>
                         <p className='vendor-detail'><b>Method:</b> {vendor.method}</p>
-                        {/* <p><b>Engine Name:</b> {vendor.engine_name}</p> */}
                         {index !== vendors.length - 1 && <hr />}
                       </div>
                     ))}
