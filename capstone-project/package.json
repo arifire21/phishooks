@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prod": "pm2 start ./src/app.js"
+    "prod": "pm2 start ./src/index.js"
   },
   "eslintConfig": {
     "extends": [

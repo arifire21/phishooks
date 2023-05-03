@@ -17,7 +17,7 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('http://3.144.199.247:7008/api/scan-url', { url: header })
+    axios.post('http://3.144.199.247:7003/api/scan-url', { url: header })
       .then((response) => {
         let attrs = response.data.data.attributes;
         if (attrs.status === "queued") {
