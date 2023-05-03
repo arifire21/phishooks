@@ -22,6 +22,7 @@ function DetailsAccordion({ header }) {
         let attrs = response.data.data.attributes;
         if (attrs.status === "queued") {
           setErrorResult(`Too many requests, please try again later!`);
+          setVendors(vendorDetails);
         } else {
           setHarmlessResult(attrs.stats.harmless);
           setMaliciousResult(attrs.stats.malicious);
@@ -149,5 +150,3 @@ function DetailsAccordion({ header }) {
 }
 
 export default DetailsAccordion;
-
-
