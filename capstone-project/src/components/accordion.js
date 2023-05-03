@@ -17,7 +17,7 @@ function DetailsAccordion({ header }) {
     let tempTotal = 0;
     const vendorDetails = [];
 
-    axios.post('https://arifire21.github.io/Team-7-Capstone-Backend/api/scan-url', { url: header })
+    axios.post('http://3.144.199.247:7008/api/scan-url', { url: header })
       .then((response) => {
         let attrs = response.data.data.attributes;
         if (attrs.status === "queued") {
