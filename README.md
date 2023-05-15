@@ -1,4 +1,10 @@
-# Team-7-Capstone
+# PhisHooks (Team 7 Capstone Project)
+A phishing and malicious link detection web app
+Made using a React App frontend and the VirusTotal API as part of the backend
+
+![Basic Detection Details Demo](https://github.com/arifire21/Team-7-Capstone/blob/main/images/kiosk_demo.mp4)
+
+---
 ## Repo Structure
 ### Main
  Treated like a *production branch*. Please only merge completed, working code here. Verify changes with other team members before merging, if some of their code would be overwritten by a merge conflict resolutuon.
