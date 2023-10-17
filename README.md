@@ -2,7 +2,7 @@
 A phishing and malicious link detection web app
 Made using a React App frontend and the VirusTotal API as part of the backend
 
-![Basic Detection Details Demo](https://github.com/arifire21/Team-7-Capstone/blob/main/images/kiosk_demo.mp4)
+View the demo here! ![Basic Detection Details Demo](https://github.com/arifire21/Team-7-Capstone/blob/main/images/kiosk_demo.mp4)
 
 ---
 ## Repo Structure
